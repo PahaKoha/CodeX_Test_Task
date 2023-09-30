@@ -20,7 +20,7 @@
                         <Font name="Times New Roman" size="14.0" />
                     </font>
                 </TextField>
-                <Button fx:id="logInButton" layoutX="314.0" layoutY="218.0" mnemonicParsing="false" text="SingUp">
+                <Button fx:id="singUpButton" layoutX="314.0" layoutY="218.0" mnemonicParsing="false" text="SingUp">
                     <font>
                         <Font name="Times New Roman" size="18.0" />
                     </font>
@@ -30,17 +30,17 @@
                         <Font name="Times New Roman" size="25.0" />
                     </font>
                 </Label>
-            <TextField fx:id="logInField1" alignment="TOP_CENTER" layoutX="149.0" layoutY="86.0" promptText="name">
+            <TextField fx:id="nameField" alignment="TOP_CENTER" layoutX="149.0" layoutY="86.0" promptText="name">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="passwordField1" alignment="TOP_CENTER" layoutX="388.0" layoutY="86.0" promptText="last name">
+            <TextField fx:id="lastNameField" alignment="TOP_CENTER" layoutX="388.0" layoutY="86.0" promptText="last name">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="passwordField11" alignment="TOP_CENTER" layoutX="263.0" layoutY="166.0" promptText="country">
+            <TextField fx:id="countryField" alignment="TOP_CENTER" layoutX="263.0" layoutY="166.0" promptText="country">
                <font>
                   <Font name="Times New Roman" size="14.0" />
                </font>

@@ -1,10 +1,15 @@
 package com.example.codex;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class MainController {
 
@@ -28,10 +33,21 @@ public class MainController {
 
     @FXML
     void initialize() {
-        assert logInButton != null : "fx:id=\"logInButton\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert logInField != null : "fx:id=\"logInField\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file 'MainView.fxml'.";
-        assert singUpButton != null : "fx:id=\"singUpButton\" was not injected: check your FXML file 'MainView.fxml'.";
+        singUpButton.setOnAction(event -> {
+            singUpButton.getScene().getWindow().hide();
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("/com/example/codex/SingUpView.fxml"));
+            try {
+                loader.load();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            Parent root = loader.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        });
 
     }
 

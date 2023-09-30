@@ -15,31 +15,26 @@ public class SingUpController {
     private URL location;
 
     @FXML
-    private Button logInButton;
+    private TextField countryField;
+
+    @FXML
+    private TextField lastNameField;
 
     @FXML
     private TextField logInField;
 
     @FXML
-    private TextField logInField1;
+    private TextField nameField;
 
     @FXML
     private TextField passwordField;
 
     @FXML
-    private TextField passwordField1;
-
-    @FXML
-    private TextField passwordField11;
+    private Button singUpButton;
 
     @FXML
     void initialize() {
-        assert logInButton != null : "fx:id=\"logInButton\" was not injected: check your FXML file 'SingUpView.fxml'.";
-        assert logInField != null : "fx:id=\"logInField\" was not injected: check your FXML file 'SingUpView.fxml'.";
-        assert logInField1 != null : "fx:id=\"logInField1\" was not injected: check your FXML file 'SingUpView.fxml'.";
-        assert passwordField != null : "fx:id=\"passwordField\" was not injected: check your FXML file 'SingUpView.fxml'.";
-        assert passwordField1 != null : "fx:id=\"passwordField1\" was not injected: check your FXML file 'SingUpView.fxml'.";
-        assert passwordField11 != null : "fx:id=\"passwordField11\" was not injected: check your FXML file 'SingUpView.fxml'.";
+
 
     }
 
