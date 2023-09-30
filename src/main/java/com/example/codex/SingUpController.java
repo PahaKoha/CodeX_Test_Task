@@ -1,6 +1,7 @@
 package com.example.codex;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -34,7 +35,6 @@ public class SingUpController {
 
     @FXML
     void initialize() {
-
 
     }
 
