@@ -3,6 +3,7 @@ package com.example.codex;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -35,7 +36,11 @@ public class SingUpController {
 
     @FXML
     void initialize() {
-
+        DataBaseHandler dataBaseHandler = new DataBaseHandler();
+        singUpButton.setOnAction(event -> {
+            dataBaseHandler.singUpUser(nameField.getText(), lastNameField.getText(), logInField.getText(),
+                    passwordField.getText(), countryField.getText());
+        });
     }
 
 }

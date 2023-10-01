@@ -33,6 +33,17 @@ public class MainController {
 
     @FXML
     void initialize() {
+        logInButton.setOnAction(event -> {
+            String loginText = logInField.getText().trim();
+            String loginPassword = passwordField.getText().trim();
+
+            if (!loginText.equals("") && !loginPassword.equals("")){
+                loginUser(loginText, loginPassword);
+            } else {
+                System.out.println("Login or password is empty");
+            }
+        });
+
         singUpButton.setOnAction(event -> {
             singUpButton.getScene().getWindow().hide();
 
@@ -49,6 +60,9 @@ public class MainController {
             stage.showAndWait();
         });
 
+    }
+
+    private void loginUser(String loginText, String loginPassword) {
     }
 
 }
