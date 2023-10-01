@@ -36,10 +36,22 @@ public class SingUpController {
 
     @FXML
     void initialize() {
+        singUpUser();
+    }
+    private void singUpUser() {
         DataBaseHandler dataBaseHandler = new DataBaseHandler();
+
+
+
         singUpButton.setOnAction(event -> {
-            dataBaseHandler.singUpUser(nameField.getText(), lastNameField.getText(), logInField.getText(),
-                    passwordField.getText(), countryField.getText());
+            String firstName = nameField.getText();
+            String lastName = lastNameField.getText();
+            String userName = logInField.getText();
+            String password = passwordField.getText();
+            String location = countryField.getText();
+
+            User user = new User(firstName, lastName, userName, password, location);
+            dataBaseHandler.singUpUser(user);
         });
     }
 

@@ -14,23 +14,23 @@ public class DataBaseHandler extends Configs {
         Class.forName("org.postgresql.Driver");
         dbConnection = DriverManager.getConnection(connectionString, dbUser, dbPassword);
         if (dbConnection != null) {
-            System.out.println("Соединение установлено");
+            System.out.println("Connection was successfully!");
         }
         return dbConnection;
     }
 
-    public void singUpUser(String firstName, String lastName, String userName, String password, String location) {
+    public void singUpUser(User user) {
         String insert = "INSERT INTO " + Const.USER_TABLE + "(" +
                 Const.USER_FIRST_NAME + "," + Const.USER_LAST_NAME +
                 "," + Const.USER_USERNAME + "," + Const.USER_PASSWORD +
                 "," + Const.USER_LOCATION + ")" + "VALUES(?,?,?,?,?)";
         try {
             PreparedStatement preparedStatement = getDbConnection().prepareStatement(insert);
-            preparedStatement.setString(1, firstName);
-            preparedStatement.setString(2, lastName);
-            preparedStatement.setString(3, userName);
-            preparedStatement.setString(4, password);
-            preparedStatement.setString(5, location);
+            preparedStatement.setString(1, user.getFirstName());
+            preparedStatement.setString(2, user.getLastName());
+            preparedStatement.setString(3, user.getUserName());
+            preparedStatement.setString(4, user.getPassword());
+            preparedStatement.setString(5, user.getLocation());
             preparedStatement.executeUpdate();
         } catch (SQLException sqlException) {
             System.out.println(sqlException);
