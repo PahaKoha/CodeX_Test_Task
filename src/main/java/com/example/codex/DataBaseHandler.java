@@ -55,7 +55,7 @@ public class DataBaseHandler extends Configs {
                 user.setFirstName(resultSet.getString(Const.USER_FIRST_NAME));
                 user.setLastName(resultSet.getString(Const.USER_LAST_NAME));
                 user.setLocation(resultSet.getString(Const.USER_LOCATION));
-                System.out.println(user);git 
+                System.out.println(user);
             } else {
                 System.out.println("Login or password entered incorrectly");
             }
@@ -65,5 +65,20 @@ public class DataBaseHandler extends Configs {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public void createNewNote (int userId, String noteName, String note) {
+        String query = "INSERT INTO " + ConstNotes.NOTES_TABLE + "(" +
+                ConstNotes.USER_ID + "," + ConstNotes.NOTE_NAME +
+                "," + ConstNotes.NOTE +")" + "VALUES(?,?,?)";
+        try {
+            PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+            preparedStatement.setInt(1, userId);
+            preparedStatement.setString(2, noteName);
+            preparedStatement.setString(3, note);
+            preparedStatement.executeUpdate();
+        } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

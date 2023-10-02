@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.codex.CreateNewNoteController">
+   <children>
+      <TextArea fx:id="noteArea" layoutY="134.0" prefHeight="266.0" prefWidth="600.0" promptText="Write down your note..." />
+      <TextField fx:id="giveNoteATitleField" layoutX="14.0" layoutY="14.0" promptText="Give your note a title">
+         <font>
+            <Font name="Times New Roman" size="16.0" />
+         </font>
+      </TextField>
+      <Button fx:id="saveNoteButton" layoutX="484.0" layoutY="16.0" mnemonicParsing="false" text="Save your note">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="exitButton" layoutX="535.0" layoutY="59.0" mnemonicParsing="false" text="Exit">
+         <font>
+            <Font name="Times New Roman" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
