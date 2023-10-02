@@ -3,6 +3,7 @@ package com.example.codex;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -33,36 +34,42 @@ public class MainController {
 
     @FXML
     void initialize() {
+        loginUser();
+        singUpButton.setOnAction(event -> {
+            goToAnotherPage("/com/example/codex/SingUpView.fxml");
+        });
+    }
+
+    void goToAnotherPage(String address) {
+        singUpButton.getScene().getWindow().hide();
+
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource(address));
+        try {
+            loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Parent root = loader.getRoot();
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    private void loginUser(/*String loginText, String loginPassword*/) {
+        DataBaseHandler dataBaseHandler = new DataBaseHandler();
+
         logInButton.setOnAction(event -> {
             String loginText = logInField.getText().trim();
             String loginPassword = passwordField.getText().trim();
-
-            if (!loginText.equals("") && !loginPassword.equals("")){
-                loginUser(loginText, loginPassword);
+            User user = new User();
+            CurrentUser.setCurrentUser(user);
+            if (!loginText.equals("") && !loginPassword.equals("")) {
+                dataBaseHandler.logInUser(CurrentUser.getCurrentUser(), loginText, loginPassword);
             } else {
                 System.out.println("Login or password is empty");
             }
         });
-
-        singUpButton.setOnAction(event -> {
-            singUpButton.getScene().getWindow().hide();
-
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("/com/example/codex/SingUpView.fxml"));
-            try {
-                loader.load();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            Parent root = loader.getRoot();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.showAndWait();
-        });
-
-    }
-
-    private void loginUser(String loginText, String loginPassword) {
     }
 
 }

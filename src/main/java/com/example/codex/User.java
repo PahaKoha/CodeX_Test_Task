@@ -1,6 +1,7 @@
 package com.example.codex;
 
 public class User {
+    private  String id;
     private String firstName;
     private String lastName;
     private String userName;
@@ -13,6 +14,18 @@ public class User {
         this.userName = userName;
         this.password = password;
         this.location = location;
+    }
+
+    public User() {
+
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -53,5 +66,17 @@ public class User {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", location='" + location + '\'' +
+                '}';
     }
 }
