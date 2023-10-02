@@ -70,9 +70,12 @@ public class SingUpController {
             String password = passwordField.getText();
             String location = countryField.getText();
 
-
-            dataBaseHandler.singUpUser(firstName, lastName, userName, password, location);
-            goToAnotherPage("/com/example/codex/MainView.fxml");
+            if (!firstName.equals("") && !lastName.equals("") && !userName.equals("") && !password.equals("") && !location.equals("")) {
+                dataBaseHandler.singUpUser(firstName, lastName, userName, password, location);
+                goToAnotherPage("/com/example/codex/MainView.fxml");
+            } else {
+                System.out.println("You forgot to fill in some field");
+            }
         });
     }
 

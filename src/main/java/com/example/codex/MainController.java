@@ -62,10 +62,11 @@ public class MainController {
         logInButton.setOnAction(event -> {
             String loginText = logInField.getText().trim();
             String loginPassword = passwordField.getText().trim();
-            User user = new User();
-            CurrentUser.setCurrentUser(user);
             if (!loginText.equals("") && !loginPassword.equals("")) {
+                User user = new User();
+                CurrentUser.setCurrentUser(user);
                 dataBaseHandler.logInUser(CurrentUser.getCurrentUser(), loginText, loginPassword);
+                goToAnotherPage("/com/example/codex/UserPageView.fxml");
             } else {
                 System.out.println("Login or password is empty");
             }

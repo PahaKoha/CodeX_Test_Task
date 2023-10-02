@@ -42,10 +42,11 @@ public class DataBaseHandler extends Configs {
     }
 
     public void logInUser(User user, String userName, String password) {
-        String query = "SELECT * FROM " + Const.USER_TABLE + " WHERE " + Const.USER_USERNAME + " =?";
+        String query = "SELECT * FROM " + Const.USER_TABLE + " WHERE " + Const.USER_USERNAME + " =? AND  " + Const.USER_PASSWORD + " = ?";
         try {
             PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
             preparedStatement.setString(1, userName);
+            preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 user.setId(resultSet.getString(Const.USER_ID));
@@ -54,9 +55,9 @@ public class DataBaseHandler extends Configs {
                 user.setFirstName(resultSet.getString(Const.USER_FIRST_NAME));
                 user.setLastName(resultSet.getString(Const.USER_LAST_NAME));
                 user.setLocation(resultSet.getString(Const.USER_LOCATION));
-                System.out.println(user);
+                System.out.println(user);git 
             } else {
-                System.out.println("This value not exist");
+                System.out.println("Login or password entered incorrectly");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
