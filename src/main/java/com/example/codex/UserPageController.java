@@ -2,7 +2,10 @@ package com.example.codex;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,11 +27,18 @@ public class UserPageController {
 
     @FXML
     private Label titleField;
+
+    @FXML
+    private Button viewNotesButton;
+
     @FXML
     void initialize() {
         titleField.setText(titleField.getText() + " " + CurrentUser.getCurrentUser().getUserName() + "!");
         createNewNoteButton.setOnAction(event -> {
             goToAnotherPage("/com/example/codex/CreateNewNote.fxml");
+        });
+        viewNotesButton.setOnAction(event -> {
+            goToAnotherPage("/com/example/codex/AllNotes.fxml");
         });
     }
 
@@ -46,5 +56,7 @@ public class UserPageController {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+
 
 }

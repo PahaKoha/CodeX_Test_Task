@@ -43,7 +43,7 @@ public class CreateNewNoteController {
 
         String noteName = giveNoteATitleField.getText();
         String note = noteArea.getText();
-        int userId = Integer.parseInt(CurrentUser.getCurrentUser().getId());
+        String userId = (CurrentUser.getCurrentUser().getId());
         if (!noteName.equals("")) {
             dataBaseHandler.createNewNote(userId, noteName, note);
             System.out.println("Note saved!");

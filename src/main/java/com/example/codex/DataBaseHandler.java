@@ -2,6 +2,9 @@ package com.example.codex;
 
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class DataBaseHandler extends Configs {
 
@@ -67,17 +70,34 @@ public class DataBaseHandler extends Configs {
 
     }
 
-    public void createNewNote (int userId, String noteName, String note) {
+    public void createNewNote(String userId, String noteName, String note) {
         String query = "INSERT INTO " + ConstNotes.NOTES_TABLE + "(" +
                 ConstNotes.USER_ID + "," + ConstNotes.NOTE_NAME +
-                "," + ConstNotes.NOTE +")" + "VALUES(?,?,?)";
+                "," + ConstNotes.NOTE + ")" + "VALUES(?,?,?)";
         try {
             PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
-            preparedStatement.setInt(1, userId);
+            preparedStatement.setString(1, userId);
             preparedStatement.setString(2, noteName);
             preparedStatement.setString(3, note);
             preparedStatement.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    void getAllNotes(Map<String, String> noteNames) {
+        String query = "SELECT * FROM " + ConstNotes.NOTES_TABLE + " WHERE " + ConstNotes.USER_ID + " =?";
+        try {
+            PreparedStatement preparedStatement = getDbConnection().prepareStatement(query);
+            preparedStatement.setString(1, CurrentUser.getCurrentUser().getId());
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                noteNames.put(resultSet.getString(ConstNotes.NOTE_NAME), resultSet.getString(ConstNotes.NOTE));
+            }
+            System.out.println(noteNames);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
