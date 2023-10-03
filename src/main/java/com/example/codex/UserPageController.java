@@ -2,8 +2,6 @@ package com.example.codex;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -32,6 +30,9 @@ public class UserPageController {
     private Button viewNotesButton;
 
     @FXML
+    private Button logOutButton;
+
+    @FXML
     void initialize() {
         titleField.setText(titleField.getText() + " " + CurrentUser.getCurrentUser().getUserName() + "!");
         createNewNoteButton.setOnAction(event -> {
@@ -39,6 +40,12 @@ public class UserPageController {
         });
         viewNotesButton.setOnAction(event -> {
             goToAnotherPage("/com/example/codex/AllNotes.fxml");
+        });
+        logOutButton.setOnAction(event -> {
+            CurrentUser.setCurrentUser(null);
+            logOutButton.getScene().getWindow().hide();
+            goToAnotherPage("/com/example/codex/MainView.fxml");
+            System.out.println(CurrentUser.getCurrentUser());
         });
     }
 

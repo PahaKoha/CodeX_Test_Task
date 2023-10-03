@@ -61,7 +61,7 @@ public class SingUpController {
     }
 
     private void singUpUser() {
-        DataBaseHandler dataBaseHandler = new DataBaseHandler();
+        DataBaseHandler dataBaseHandler = new DataBaseHandler(Configs.dbHost, Configs.dbPort, Configs.dbName, Configs.dbUser, Configs.dbPassword);
 
         singUpButton.setOnAction(event -> {
             String firstName = nameField.getText();

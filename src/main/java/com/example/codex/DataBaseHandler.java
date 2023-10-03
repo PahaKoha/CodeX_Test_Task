@@ -2,25 +2,42 @@ package com.example.codex;
 
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
-public class DataBaseHandler extends Configs {
+public class DataBaseHandler {
+    private static final String JDBC_URL_PREFIX = "jdbc:postgresql://";
+    private String dbHost;
+    private String dbPort;
+    private String dbName;
+    private String dbUser;
+    private String dbPassword;
+    private Connection dbConnection;
 
-    Connection dbConnection;
+    public DataBaseHandler(String dbHost, String dbPort, String dbName, String dbUser, String dbPassword) {
+        this.dbHost = dbHost;
+        this.dbPort = dbPort;
+        this.dbName = dbName;
+        this.dbUser = dbUser;
+        this.dbPassword = dbPassword;
+    }
 
     public Connection getDbConnection() throws ClassNotFoundException, SQLException {
         if (dbConnection == null || dbConnection.isClosed()) {
-            String connectionString = "jdbc:postgresql://"
-                    + dbHost + ":" + dbPort + "/" + dbName;
+            String connectionString = JDBC_URL_PREFIX + dbHost + ":" + dbPort + "/" + dbName;
             Class.forName("org.postgresql.Driver");
             dbConnection = DriverManager.getConnection(connectionString, dbUser, dbPassword);
-            if (dbConnection != null) {
-                System.out.println("Connection was successfully!");
-            }
         }
         return dbConnection;
+    }
+
+    public void closeDbConnection() {
+        try {
+            if (dbConnection != null && !dbConnection.isClosed()) {
+                dbConnection.close();
+            }
+        } catch (SQLException e) {
+            // Handle the exception or log it using a logger
+        }
     }
 
     public void singUpUser(String firstName, String lastName, String userName, String password, String location) {
@@ -40,6 +57,8 @@ public class DataBaseHandler extends Configs {
             System.out.println(sqlException);
         } catch (ClassNotFoundException classNotFoundException) {
             System.out.println(classNotFoundException);
+        } finally {
+            closeDbConnection();
         }
 
     }
@@ -66,6 +85,8 @@ public class DataBaseHandler extends Configs {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
+        } finally {
+            closeDbConnection();
         }
 
     }
@@ -82,6 +103,8 @@ public class DataBaseHandler extends Configs {
             preparedStatement.executeUpdate();
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
+        } finally {
+            closeDbConnection();
         }
     }
 
@@ -99,6 +122,8 @@ public class DataBaseHandler extends Configs {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
+        } finally {
+            closeDbConnection();
         }
     }
 }

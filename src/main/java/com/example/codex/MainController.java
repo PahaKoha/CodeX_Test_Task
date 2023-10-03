@@ -56,13 +56,13 @@ public class MainController {
         stage.show();
     }
 
-    private void loginUser(/*String loginText, String loginPassword*/) {
-        DataBaseHandler dataBaseHandler = new DataBaseHandler();
+    private void loginUser() {
+        DataBaseHandler dataBaseHandler = new DataBaseHandler(Configs.dbHost, Configs.dbPort, Configs.dbName, Configs.dbUser, Configs.dbPassword);
 
         logInButton.setOnAction(event -> {
             String loginText = logInField.getText().trim();
             String loginPassword = passwordField.getText().trim();
-            if (!loginText.equals("") && !loginPassword.equals("")) {
+            if (isLoginAndPasswordValid(loginText, loginPassword)) {
                 User user = new User();
                 CurrentUser.setCurrentUser(user);
                 dataBaseHandler.logInUser(CurrentUser.getCurrentUser(), loginText, loginPassword);
@@ -71,6 +71,10 @@ public class MainController {
                 System.out.println("Login or password is empty");
             }
         });
+    }
+
+    private boolean isLoginAndPasswordValid(String loginText, String loginPassword) {
+        return !loginText.isEmpty() && !loginPassword.isEmpty();
     }
 
 }

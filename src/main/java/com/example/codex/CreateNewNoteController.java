@@ -39,7 +39,7 @@ public class CreateNewNoteController {
     }
 
     void saveNote() {
-        DataBaseHandler dataBaseHandler = new DataBaseHandler();
+        DataBaseHandler dataBaseHandler = new DataBaseHandler(Configs.dbHost, Configs.dbPort, Configs.dbName, Configs.dbUser, Configs.dbPassword);
 
         String noteName = giveNoteATitleField.getText();
         String note = noteArea.getText();

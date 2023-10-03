@@ -1,9 +1,9 @@
 package com.example.codex;
 
 public class Configs {
-    protected String dbHost = "localhost";
-    protected String dbPort = "5432";
-    protected String dbUser = "postgres";
-    protected String dbPassword = "724036";
-    protected String dbName = "MetricsEx";
+    public static final String dbHost = "localhost";
+    public static final String dbPort = "5432";
+    public static final String dbUser = "postgres";
+    public static final String dbPassword = "724036";
+    public static final String dbName = "MetricsEx";
 }
