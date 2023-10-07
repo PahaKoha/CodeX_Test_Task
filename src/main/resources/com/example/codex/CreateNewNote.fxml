@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.codex.CreateNewNoteController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.codex.CreateNewNoteController">
    <children>
       <TextArea fx:id="noteArea" layoutY="134.0" prefHeight="266.0" prefWidth="600.0" promptText="Write down your note..." />
       <TextField fx:id="giveNoteATitleField" layoutX="14.0" layoutY="14.0" promptText="Give your note a title">
